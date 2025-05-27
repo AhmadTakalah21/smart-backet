@@ -1,0 +1,41 @@
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android" version "1.9.0" // تحديث إصدار Kotlin
+    id "dev.flutter.flutter-gradle-plugin" // يجب أن يكون بعد Android و Kotlin
+}
+
+android {
+    namespace = "com.example.fresh_shelf"
+    compileSdk = 34 // يمكن تحديثه إلى 35 إذا تم تثبيت SDK بشكل صحيح
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8" // متوافق مع Kotlin 1.9.0
+    }
+
+    defaultConfig {
+        applicationId = "com.example.fresh_shelf"
+        minSdk = 21 // الحد الأدنى للـ SDK
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+            minifyEnabled true // تصغير الكود لتقليل حجم التطبيق
+            shrinkResources true // إزالة الموارد غير المستخدمة
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}

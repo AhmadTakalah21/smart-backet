@@ -1,0 +1,26 @@
+import 'package:fresh_shelf/core/app/state/app_state.dart';
+import '../../../../core/configuration/app_configurations.dart';
+import '../../../../core/data/params_model.dart';
+import '../../../../core/enum.dart';
+import '../../../../injection_container.dart';
+
+class CancelBillParams extends ParamsModel {
+  CancelBillParams({BaseBodyModel? body, required this.billId})
+      : super(body: body, baseUrl: AppConfigurations.BaseUrl);
+  final int billId;
+
+  @override
+  Map<String, String> get additionalHeaders => {};
+
+  @override
+  RequestType? get requestType => RequestType.GET;
+
+  @override
+  String? get url => 'cancelBill/${billId}';
+
+  @override
+  Map<String, String> get urlParams => {};
+
+  @override
+  List<Object?> get props => [url, urlParams, requestType, body];
+}
